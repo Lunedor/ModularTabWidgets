@@ -1,0 +1,10 @@
+{
+    "id": "digital-clock",
+    "name": "Digital Clock",
+    "version": "1.0",
+    "description": "A simple digital style clock (HH:MM) with a blinking colon.",
+    "widgetType": "clock",  
+    "mainScript": "widget.js",
+    "styleSheet": "style.css",
+    "settingsConfig": [] 
+}
