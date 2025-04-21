@@ -1,0 +1,23 @@
+/* d:\Users\Lunedor\Desktop\ModularTab\widgets\digital-clock\style.css */
+
+.widget-digital-clock {
+    font-family: 'Courier New', Courier, monospace; /* Digital/Monospace font */
+    font-size: 6em; /* Farklı bir boyut */
+    font-weight: bold;
+    color: var(--accent-color, #61afef); /* Tema vurgu rengini kullan */
+    background-color: rgba(0, 0, 0, 0.1); /* Hafif bir arka plan */
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-align: center;
+    display: inline-block; /* İçeriğe göre boyutlan */
+    user-select: none;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.widget-digital-clock .digital-colon {
+    display: inline-block; /* Opaklık animasyonu için */
+    transition: opacity 0.2s ease-in-out; /* Yumuşak yanıp sönme */
+    margin: 0 0.05em;
+    position: relative; /* Dikey hizalama için */
+    top: -0.05em; /* İki noktayı biraz yukarı al */
+}
