@@ -1,0 +1,8 @@
+[
+  {
+    "id": "digital-clock",
+    "name": "Digital Clock",
+    "description": "A simple digital style clock (HH:MM).",
+    "manifestPath": "/widgets/digital-clock/manifest.json"
+  }
+]
