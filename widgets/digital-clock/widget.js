@@ -1,72 +1,46 @@
+// GitHub Reposu -> /widgets/digital-clock/widget.js
+
 /**
  * Digital Clock Widget (HH:MM with blinking colon)
+ * - Exports itself to window.currentWidgetModuleExports for sandbox loading.
  */
 
 let clockIntervalId = null;
 let clockElements = null;
 
-function padZero(num) {
-    return num.toString().padStart(2, '0');
-}
+function padZero(num) { /* ... */ }
 
-function updateTime() {
-    if (!clockElements) return;
+function updateTime() { /* ... */ }
 
-    const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-
-    // Update DOM
-    clockElements.hours.textContent = padZero(hours);
-    clockElements.minutes.textContent = padZero(minutes);
-
-    // Blink colon every second
-    const showColon = now.getSeconds() % 2 === 0;
-    clockElements.colon.style.opacity = showColon ? '1' : '0.3';
-}
-
-export function render(settings) {
-    console.log("DigitalClock: Rendering...");
-
+function render(settings) {
+    console.log("DigitalClock (Sandboxed): Rendering..."); // Logu güncelle
     const clockElement = document.createElement('div');
-    clockElement.className = 'widget widget-digital-clock'; // Specific class
-
-    const hoursSpan = document.createElement('span');
-    hoursSpan.className = 'digital-hours';
-
-    const minutesSpan = document.createElement('span');
-    minutesSpan.className = 'digital-minutes';
-
-    const colonSpan = document.createElement('span');
-    colonSpan.className = 'digital-colon';
-    colonSpan.textContent = ':';
-
+    clockElement.className = 'widget widget-digital-clock';
+    // ... (Diğer elementleri oluşturma) ...
     clockElement.appendChild(hoursSpan);
     clockElement.appendChild(colonSpan);
     clockElement.appendChild(minutesSpan);
-
-    clockElements = {
-        hours: hoursSpan,
-        minutes: minutesSpan,
-        colon: colonSpan
-    };
-
-    updateTime(); // Initial display
-
-    if (clockIntervalId) {
-        clearInterval(clockIntervalId);
-    }
-    clockIntervalId = setInterval(updateTime, 1000); // Update every second for blink
-
-    console.log("DigitalClock: Rendered and interval started.");
+    clockElements = { /* ... */ };
+    updateTime();
+    if (clockIntervalId) clearInterval(clockIntervalId);
+    clockIntervalId = setInterval(updateTime, 1000);
+    console.log("DigitalClock (Sandboxed): Rendered.");
     return clockElement;
 }
 
-export function clear(element) {
+function clear(element) {
     if (clockIntervalId) {
         clearInterval(clockIntervalId);
         clockIntervalId = null;
         clockElements = null;
-        console.log("DigitalClock: Update interval cleared.");
+        console.log("DigitalClock (Sandboxed): Cleared.");
     }
 }
+
+// *** YENİ: Sandbox'ın bulması için exportları globale ata ***
+window.currentWidgetModuleExports = {
+  render: render,
+  clear: clear
+  // Varsa update fonksiyonu da eklenebilir
+};
+
